@@ -267,10 +267,6 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 889212770}
-    - target: {fileID: 1524121433, guid: 7ac4efceb9714964599a2acd92d975e0, type: 3}
-      propertyPath: explosion
-      value: 
-      objectReference: {fileID: 8665918218611227377, guid: 9e9bc7b282d9a6543b2d391cab43aecb, type: 3}
     - target: {fileID: 9092821230364549285, guid: 7ac4efceb9714964599a2acd92d975e0, type: 3}
       propertyPath: m_RootOrder
       value: 2
