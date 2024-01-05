@@ -59,9 +59,13 @@ MonoBehaviour:
   - {fileID: 1912751335100450952, guid: c4e81a668f3c9624f9f5c847ba57024b, type: 3}
   - {fileID: 1912751335100450952, guid: 71d6ca0588f9d4243a309f7fded1b395, type: 3}
   - {fileID: 1912751335100450952, guid: 6bedaf704099857498accd871e446e15, type: 3}
-  verticalTransitions:
+  transitionUp:
   - {fileID: 1912751335100450952, guid: 22153c2aefb85a44f906d8445f1b1aaf, type: 3}
-  horizontalTransitions:
+  transitionDown:
+  - {fileID: 1912751335100450952, guid: b5b5875a62ee4304f85a0b1efa172ef8, type: 3}
+  downToHorizontal:
+  - {fileID: 1912751335100450952, guid: 87c6fcbf8eb6b4548a05b3355a2694cb, type: 3}
+  upToHorizontal:
   - {fileID: 1912751335100450952, guid: 6a225199dc869724d8d576da54662e97, type: 3}
   levelLength: 100
   levelStartSpawn: {fileID: 8782207572466535020}

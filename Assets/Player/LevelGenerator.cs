@@ -19,9 +19,11 @@ public class LevelGenerator : MonoBehaviour
     //Level Chunks for vertical sections
     [SerializeField] GameObject[] verticalChunks;
     //Level Chunks that are used to transition to vertical sections
-    [SerializeField] GameObject[] verticalTransitions;
+    [SerializeField] GameObject[] transitionUp;
+    [SerializeField] GameObject[] transitionDown;
     //Level Chunks that are used to transfer into horizontal sections
-    [SerializeField] GameObject[] horizontalTransitions;
+    [SerializeField] GameObject[] downToHorizontal;
+    [SerializeField] GameObject[] upToHorizontal;
     //The total length of the level in chunks
     [SerializeField] int levelLength;
     //The transform of the first level chunk
@@ -37,6 +39,7 @@ public class LevelGenerator : MonoBehaviour
     //Used to randomly transition between horiz and vert sections
     int randomInt;
     bool verticalSpawning = false;
+    bool spawningDown = false;
     GameObject chunk;
     [SerializeField] int enterVerticalChance = 10;
     [SerializeField] int exitVerticalChance = 25;
@@ -63,14 +66,30 @@ public class LevelGenerator : MonoBehaviour
             //Based on random chance, insert a transition into or out of verticality. 
             if(!verticalSpawning && randomInt <= enterVerticalChance){
                 verticalSpawning = true;
-                chunkIndex = UnityEngine.Random.Range(0, verticalTransitions.Length);
-                chunk = Instantiate(verticalTransitions[chunkIndex], levelStartSpawn);
+                int up = UnityEngine.Random.Range(0, 2);
+                if(up == 0){
+                    chunkIndex = UnityEngine.Random.Range(0, transitionUp.Length);
+                    chunk = Instantiate(transitionUp[chunkIndex], levelStartSpawn);
+                    verticalLevelOffset = new Vector3(0, levelSizeY, 0);
+                    spawningDown = false;
+                }else{
+                    chunkIndex = UnityEngine.Random.Range(0, transitionDown.Length);
+                    chunk = Instantiate(transitionDown[chunkIndex], levelStartSpawn);
+                    verticalLevelOffset = new Vector3(0, -levelSizeY, 0);
+                    spawningDown = true;
+                }
             }
             else if(verticalSpawning && randomInt <= exitVerticalChance){
                 verticalSpawning = false;
-                chunkIndex = UnityEngine.Random.Range(0, horizontalTransitions.Length);
-                Debug.Log(chunkIndex);
-                chunk = Instantiate(horizontalTransitions[chunkIndex], levelStartSpawn);
+                if(spawningDown){
+                    chunkIndex = UnityEngine.Random.Range(0, downToHorizontal.Length);
+                    chunk = Instantiate(downToHorizontal[chunkIndex], levelStartSpawn);
+                    spawningDown = false;
+                }else{
+                    chunkIndex = UnityEngine.Random.Range(0, upToHorizontal.Length);
+                    chunk = Instantiate(upToHorizontal[chunkIndex], levelStartSpawn);
+                    spawningDown = false;
+                }
             }
             //Otherwise, insert a regular vertical or horizontal chunk
             else{
@@ -83,6 +102,21 @@ public class LevelGenerator : MonoBehaviour
                 }
             }
             //After instantiation, move the chunk to the correct position.
+            chunk.transform.position = spawnPoint;
+        }
+        //Insert a transition to horiz if necesary
+        if(verticalSpawning){
+            spawnPoint += verticalLevelOffset;
+            verticalSpawning = false;
+            if(spawningDown){
+                chunkIndex = UnityEngine.Random.Range(0, downToHorizontal.Length);
+                chunk = Instantiate(downToHorizontal[chunkIndex], levelStartSpawn);
+                spawningDown = false;
+            }else{
+                chunkIndex = UnityEngine.Random.Range(0, upToHorizontal.Length);
+                chunk = Instantiate(upToHorizontal[chunkIndex], levelStartSpawn);
+                spawningDown = false;
+            }
             chunk.transform.position = spawnPoint;
         }
         //Insert the end chunk (we may not have one)

@@ -360,7 +360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1912751335100450959}
   m_Layer: 6
-  m_Name: HorizToVert
+  m_Name: HorizToUp
   m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
