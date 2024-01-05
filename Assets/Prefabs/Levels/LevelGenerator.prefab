@@ -69,5 +69,5 @@ MonoBehaviour:
   - {fileID: 1912751335100450952, guid: 6a225199dc869724d8d576da54662e97, type: 3}
   levelLength: 100
   levelStartSpawn: {fileID: 8782207572466535020}
-  enterVerticalChance: 10
+  enterVerticalChance: 25
   exitVerticalChance: 25
