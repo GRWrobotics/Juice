@@ -17,7 +17,7 @@ namespace TarodevController {
     /// If you hve any questions or would like to brag about your score, come to discord: https://discord.gg/GqeHHnhHpz
     /// </summary>
     /// 
-    //Edited by Glen Warren 12/19/23 for wall jumping, turning, shooting, and strafing. 
+    //Edited by Glen Warren 12/19/23 to add wall jumping, turning, shooting, strafing, screenshake.
     public class PlayerController : MonoBehaviour, IPlayerController {
 
         // Public for external hooks
